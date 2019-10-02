@@ -8,7 +8,12 @@
 
 #ifndef GLOBAL_H_
 #define GLOBAL_H_
+
+#ifdef _WIN32
 #define GLOBAL_VAR __declspec(selectany)
+#else
+#define GLOBAL_VAR extern
+#endif
 
 #include "TermDLL.h"
 

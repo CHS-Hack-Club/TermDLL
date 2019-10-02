@@ -7,6 +7,9 @@
 *.vcxproj.filters
 *.vcxproj.user
 
+Makefile
+*.make
+
 
 # Prerequisites
 *.d

@@ -22,6 +22,9 @@ namespace termDLL {
 				~session(); // Delete this
 			private:
 				std::string myWorkingDir; // Completely local, but copied from session(directory)
+				std::mutex myMutex; // For threading
+				bool active; // Is the user actively typing/viewing this specific session
+				int ID; // ID
 		};
 	}
 }

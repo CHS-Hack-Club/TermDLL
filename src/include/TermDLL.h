@@ -27,21 +27,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-// Define API keyword
-#ifdef TERMDLL_EXPORT
-#define API __declspec(dllexport)
-#else
-#define API __declspec(dllimport)
-#endif
-
-// Linux doesn't support __declspec(dllexport)
-#ifdef __linux__
-#ifdef TERMDLL_EXPORT
-#define API __attribute__((visibility("default")))
-#endif
-#endif
-
 // OS specific libraries
 #ifdef _WIN32
 #include <windows.h>
@@ -50,6 +35,7 @@
 #endif
 
 // TermDLL Libraries
+#include "export.h"
 #include "global.h"
 #include "session.h"
 #include "permissions.h"
@@ -57,8 +43,8 @@
 namespace termDLL {
 
 	namespace core {
-		API void init(std::string dir);
-		API bool run(std::vector<std::string> input);
+		API void init(std::string dir, bool printInfo);
+		API bool run(std::vector<std::string> input, int ID = 0);
 	}
 
 

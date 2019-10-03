@@ -27,6 +27,7 @@ namespace termDLL{
 		GLOBAL_VAR std::string currentWorkingDirectory;
 		GLOBAL_VAR std::string version = "1.0";
 		GLOBAL_VAR session firstSession(DEFAULT_PATH);
+
 	}
 }
 

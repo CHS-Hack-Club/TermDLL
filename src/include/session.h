@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <string>
-#include "TermDLL.h"
+#include "export.h"
 
 
 namespace termDLL {
@@ -22,6 +22,7 @@ namespace termDLL {
 				~session(); // Delete this
 			private:
 				std::string myWorkingDir; // Completely local, but copied from session(directory)
+
 		};
 	}
 }

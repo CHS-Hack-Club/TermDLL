@@ -9,6 +9,7 @@
 #ifndef PERMISSIONS_H_
 #define PERMISSIONS_H_
 
+#include "TermDLL.h"
 
 enum class permissionLevel {
 	admin, // Same as user, but admin
@@ -16,5 +17,6 @@ enum class permissionLevel {
 	guest, // Read only permissions, should rarely be used
 	NA // Defult value, if this is set find out permission level ourselves
 };
+
 
 #endif

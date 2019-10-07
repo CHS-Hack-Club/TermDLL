@@ -22,6 +22,7 @@ namespace termDLL {
 				~session(); // Delete this
 			private:
 				std::string myWorkingDir; // Completely local, but copied from session(directory)
+				bool active;
 		};
 	}
 }

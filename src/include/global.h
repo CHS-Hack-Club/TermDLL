@@ -13,7 +13,7 @@
 #define GLOBAL_VAR __declspec(selectany)
 #define DEFAULT_PATH "C:\\"
 #else
-#define GLOBAL_VAR extern
+#define GLOBAL_VAR static
 #define DEFAULT_PATH "/home/"
 #endif
 
@@ -25,8 +25,7 @@
 namespace termDLL{
 	namespace core {
 		GLOBAL_VAR std::string currentWorkingDirectory;
-		GLOBAL_VAR std::string version = "1.0";
-		GLOBAL_VAR session firstSession(DEFAULT_PATH);
+		const GLOBAL_VAR std::string version = "1.0";
 
 	}
 }

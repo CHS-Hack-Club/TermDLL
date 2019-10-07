@@ -9,7 +9,8 @@
 #ifndef PERMISSIONS_H_
 #define PERMISSIONS_H_
 
-#include "TermDLL.h"
+#include "export.h"
+#include "global.h"
 
 enum class permissionLevel {
 	admin, // Same as user, but admin

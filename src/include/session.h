@@ -12,7 +12,7 @@
 #include <iostream>
 #include <string>
 #include "export.h"
-
+#include "global.h"
 
 namespace termDLL {
 	namespace core {

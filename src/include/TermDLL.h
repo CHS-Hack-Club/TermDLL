@@ -37,7 +37,7 @@
 
 // TermDLL Libraries
 #include "export.h"
-#include "global.h"
+//#include "global.h"
 #include "session.h"
 #include "permissions.h"
 

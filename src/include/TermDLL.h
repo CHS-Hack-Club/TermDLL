@@ -25,6 +25,9 @@
 #include <thread>
 #include <future>
 #include <any>
+#include <tuple>
+#include <utility>
+#include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -38,16 +41,14 @@
 // TermDLL Libraries
 #include "export.h"
 //#include "global.h"
-#include "session.h"
-#include "permissions.h"
 
 namespace termDLL {
 
 	namespace core {
 		API void init(std::string dir, bool printInfo);
-		API bool run(std::vector<std::string> input, int ID = 0);
+		API bool run(std::vector<std::string> input);
 	}
-
+	
 
 }
 

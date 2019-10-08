@@ -1,7 +1,7 @@
 // Define functions in TermDLL and include other header files.
 
 #include "TermDLL.h"
-
+#include "global.h"
 
 namespace termDLL {
 	namespace core {

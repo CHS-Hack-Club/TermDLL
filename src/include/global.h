@@ -19,14 +19,16 @@
 
 #include <iostream>
 #include <string>
-#include "session.h"
+#include <vector>
+#include "action.h"
 
 
 namespace termDLL{
 	namespace core {
 		GLOBAL_VAR std::string currentWorkingDirectory;
+		GLOBAL_VAR std::vector<::termDLL::actions::action> myActionList;
 		const GLOBAL_VAR std::string version = "1.0";
-
+		
 	}
 }
 

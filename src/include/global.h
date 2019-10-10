@@ -27,7 +27,7 @@ namespace termDLL{
 	namespace core {
 		GLOBAL_VAR std::string currentWorkingDirectory;
 		GLOBAL_VAR std::vector<::termDLL::actions::action> myActionList;
-		const GLOBAL_VAR std::string version = "1.0";
+		GLOBAL_VAR std::string version;
 		
 	}
 }

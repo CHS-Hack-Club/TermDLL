@@ -1,4 +1,12 @@
-#include "TermDLL.h"
+#include "export.h"
+#include <vector>
+#include <string>
+#include <utility>
+#include <iterator>
+#include <sstream>
+#include <algorithm>
+
+
 
 enum class parserType{
 	command, variable, programmable
@@ -19,7 +27,7 @@ namespace termDLL{
 
 
 
-		class parser{
+		class API parser{
 			public:
 				parser(std::string delim, int type, bool quotes, std::vector<std::string> input);
 				~parser();

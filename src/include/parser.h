@@ -11,7 +11,7 @@ namespace termDLL{
 
 		std::vector<std::string> strParse(std::string input){
 			std::istringstream ss(input);
-			using strIt = std::istream_iterator<std::string>;
+			using StrIt = std::istream_iterator<std::string>;
 			std::vector<std::string> contain(StrIt(ss), StrIt{});
 			return contain;
 		}

@@ -25,10 +25,12 @@
 #include <thread>
 #include <future>
 #include <any>
+#include <algorithm>
 #include <tuple>
 #include <utility>
 #include <sstream>
 #include <stdio.h>
+#include <iterator>
 #include <stdlib.h>
 
 // OS specific libraries

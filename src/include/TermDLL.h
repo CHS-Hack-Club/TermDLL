@@ -29,9 +29,7 @@
 #include <tuple>
 #include <utility>
 #include <sstream>
-#include <stdio.h>
 #include <iterator>
-#include <stdlib.h>
 
 // OS specific libraries
 #ifdef _WIN32

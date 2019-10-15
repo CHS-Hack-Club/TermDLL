@@ -3,7 +3,7 @@
 
 namespace termDLL{
 	namespace utils{
-		API parser::parser(std::string delim, int type, bool quotes, std::vector<std::string> input){
+		parser::parser(std::string delim, int type, bool quotes, std::vector<std::string> input){
 			parser::myBuffer = input;
 			parser::myBuffer.erase(std::remove(parser::myBuffer.begin(), parser::myBuffer.end(), delim), parser::myBuffer.end());
 			int num = 0;
@@ -28,11 +28,11 @@ namespace termDLL{
 
 		}
 
-		API int parser::getType(int in) {
+		int parser::getType(int in) {
 			return parser::assigned.at(in);
 		}
 
-		API std::string parser::getValue(int in) {
+		std::string parser::getValue(int in) {
 			return parser::myBuffer.at(in);
 		}
 

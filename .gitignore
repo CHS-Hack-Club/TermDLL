@@ -9,7 +9,7 @@
 
 Makefile
 *.make
-
+.vscode/
 
 # Prerequisites
 *.d

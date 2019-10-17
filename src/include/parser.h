@@ -1,9 +1,11 @@
 #include "export.h"
+#include <iostream>
 #include <vector>
 #include <string>
 #include <utility>
 #include <iterator>
 #include <sstream>
+#include <xutility>
 #include <algorithm>
 
 
@@ -29,7 +31,8 @@ namespace termDLL{
 
 		class API parser{
 			public:
-				parser(std::string delim, int type, bool quotes, std::vector<std::string> input);
+				parser(std::string delim, int type, bool quotes, std::vector<std::string> input); // Process by space (eg: alias test = x, not alias test=x)
+				parser(std::string delim, int type, bool quotes, std::string input); // Process based on setter(=)
 				~parser();
 				int getType(int in); // Return assignment of one type; eg: arg(0) 
 				std::string getValue(int in);
@@ -37,6 +40,7 @@ namespace termDLL{
 			private:
 				bool parseQuotes;
 				std::vector<std::string> myBuffer;
+				std::string myStrBuffer;
 				std::vector<int> assigned; // For each processed input:
 							   // 0 = identifier
 							   // 1 = setter (=)

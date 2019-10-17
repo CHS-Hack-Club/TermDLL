@@ -5,7 +5,6 @@
 #include <utility>
 #include <iterator>
 #include <sstream>
-#include <xutility>
 #include <algorithm>
 
 
@@ -26,17 +25,25 @@ namespace termDLL{
 			return contain;
 		}
 
+		std::vector<std::string> strParse(std::string input, std::string delim, std::string delim2 = " ") {
+			std::string buffer = input;
+			size_t delimPos = buffer.find(delim);
+			buffer.insert(delimPos - delim.length() , " ");
+			buffer.insert(delimPos + delim.length(), " ");
+			return strParse(buffer);
+		}
+
 
 
 
 		class API parser{
 			public:
 				parser(std::string delim, int type, bool quotes, std::vector<std::string> input); // Process by space (eg: alias test = x, not alias test=x)
-				parser(std::string delim, int type, bool quotes, std::string input); // Process based on setter(=)
 				~parser();
 				int getType(int in); // Return assignment of one type; eg: arg(0) 
 				std::string getValue(int in);
 				std::pair<int, std::string> get(int in);
+				int size();
 			private:
 				bool parseQuotes;
 				std::vector<std::string> myBuffer;

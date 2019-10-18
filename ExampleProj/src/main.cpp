@@ -12,13 +12,11 @@
 int main() {
 	std::string in;
 	std::getline(std::cin, in);
-	termDLL::utils::parser myParse("alias", 0, false, termDLL::utils::strParse(in, "="));
-	std::cout << "Done parsing";
-	std::cout << "Size: " << myParse.size() << std::endl;
-
-	std::cout << "Content: " << myParse.getValue(0) << " ID: " << myParse.getType(0) << std::endl;
-	std::cout << "Content: " << myParse.getValue(1) << " ID: " << myParse.getType(1) << std::endl;
-	std::cout << "Content: " << myParse.getValue(2) << " ID: " << myParse.getType(2) << std::endl;
+	termDLL::utils::tokenParser myParse(in, "alias", "=");
+	std::cout << "Done parsing" << std::endl;
+	std::cout << "Content: " << myParse.getString("arg0") << " ID: " << myParse.getType("arg0") << std::endl;
+	std::cout << "Content: " << myParse.getString("arg1") << " ID: " << myParse.getType("arg1") << std::endl;
+	std::cout << "Content: " << myParse.getString("arg2") << " ID: " << myParse.getType("arg2") << std::endl;
 
 	return 0;
 }

@@ -4,56 +4,81 @@
 namespace termDLL{
 	namespace utils{
 
-		int parser::size() {
-			return parser::assigned.size();
+
+		tokenParser::~tokenParser() {
+			std::cout << "\n TDOR \n";
 		}
 
-		parser::parser(std::string delim, int type, bool quotes, std::vector<std::string> input){
-			parser::myBuffer = input;
-			parser::myBuffer.erase(std::remove(parser::myBuffer.begin(), parser::myBuffer.end(), delim), parser::myBuffer.end());
-			int num = 0;
-			for(std::vector<std::string>::iterator it = parser::myBuffer.begin(); it != parser::myBuffer.end(); it++){
-				std::string b = *it;
-				std::cout << "PARSE: " << *it << " (SIZE: " << b.length() << ")" << std::endl;
-				if(*it == "="){
-					parser::assigned.push_back(1); // Setter
-					num++;
-					continue;
+		std::vector<std::string> strParse(std::string input, std::string delim) {
+			std::string buffer = input;
+			size_t delimPos = buffer.find(delim);
+			buffer.insert(delimPos - delim.length(), " ");
+			buffer.insert(delimPos + delim.length(), " ");
+			return strParse(buffer);
+		}
+
+		std::vector<std::string> strParse(std::string input) {
+			std::istringstream ss(input);
+			using StrIt = std::istream_iterator<std::string>;
+			std::vector<std::string> contain(StrIt(ss), StrIt{});
+			return contain;
+		}
+
+		std::string removeStr(std::string orig, std::string rem) {
+			std::string buffer = orig;
+			size_t pos = buffer.find(rem);
+			buffer.erase(pos, rem.length() - 1);
+			return buffer;
+		}
+
+
+		tokenParser::tokenParser(std::string toProcess, std::string etcdelim, std::string delim, std::string exclude) {
+			removeStr(toProcess, etcdelim);
+			std::vector<std::string> bufferVector = strParse(toProcess, delim);
+			/*std::vector<std::string> excludedProcess;
+			for (std::vector<std::string>::iterator it = bufferVector.begin(); it != bufferVector.end(); it++) {
+				if (*it != exclude && *it != " ") {
+					excludedProcess.emplace_back(*it);
+					std::cout << *it;
 				}
-				else {
-					if (num != 0 && num + 1 != parser::myBuffer.size()) {
-						if (parser::myBuffer.at(num + 1) == "=") {
-							parser::assigned.push_back(0); // Identifier
-							num++;
-							continue;
-						}
-						else if (parser::myBuffer.at(num - 1) == "=") {
-							parser::assigned.push_back(2); // Variable content
-							num++;
-							continue;
-						}
-						else {
-							parser::assigned.push_back(-1);
-							num++;
-							continue;
-						}
+			} */
+
+			for (std::vector<std::string>::iterator it = bufferVector.begin(); it != bufferVector.end(); it++) {
+				std::cout << "PROC: " << *it << std::endl;
+				numberOfArgs++;
+				advance(*it);
+			}
+		}
+	
+		void tokenParser::advance(std::string adv) {
+			tokens[std::string("arg" + std::to_string(argT))] = adv;
+			argT++;
+			std::cout << "PROC(2): " << adv << std::endl;
+			advanceType(adv);
+		}
+	
+		void tokenParser::advanceType(std::string adv) {
+			parserType bufferType = parserType::NA;
+			if (adv == "=") {
+				bufferType = parserType::setter;
+			}
+			else {
+				if (argT - 1 != -1) {
+					if (tokens["arg" + std::to_string(argT - 1)] == "=") {
+						bufferType = parserType::variable;
+					}
+					else if (tokens["arg" + std::to_string(argT + 1)] == "=") {
+						bufferType = parserType::variable;
 					}
 				}
 			}
-
+			tokenTypes[std::string("arg" + std::to_string(argType))] = bufferType;
+			std::cout << "Assign: " << adv << " T: " << bufferType << std::endl;
+			argType++;
 		}
 
-		int parser::getType(int in) {
-			return parser::assigned.at(in);
-		}
 
-		std::string parser::getValue(int in) {
-			return parser::myBuffer.at(in);
-		}
 
-		parser::~parser() {
-			std::cout << "parser dtor" << std::endl;
-		}
 
 
 	}

@@ -4,55 +4,79 @@
 #include <string>
 #include <utility>
 #include <iterator>
+#include <unordered_map>
 #include <sstream>
 #include <algorithm>
 
-
-
-enum class parserType{
-	command, variable, programmable
+enum parserType {
+	NA = 0,
+	identifier = 1,
+	setter = 2,
+	variable = 3
 };
 
+#define STRNULL ""
 
 
 namespace termDLL{
 	namespace utils{
 
-		std::vector<std::string> strParse(std::string input){
-			std::istringstream ss(input);
-			using StrIt = std::istream_iterator<std::string>;
-			std::vector<std::string> contain(StrIt(ss), StrIt{});
-			return contain;
-		}
+		std::vector<std::string> strParse(std::string input);
 
-		std::vector<std::string> strParse(std::string input, std::string delim, std::string delim2 = " ") {
-			std::string buffer = input;
-			size_t delimPos = buffer.find(delim);
-			buffer.insert(delimPos - delim.length() , " ");
-			buffer.insert(delimPos + delim.length(), " ");
-			return strParse(buffer);
-		}
+		API std::vector<std::string> strParse(std::string input, std::string delim);
 
+		API std::string removeStr(std::string orig, std::string rem);
 
+		// Copies from EzraJ/ModDLL bc reasons
+		class API tokenParser {
+		public:
+
+			tokenParser(std::string toProcess, std::string etcdelim, std::string delim = STRNULL, std::string exclude = STRNULL);
+			~tokenParser();
+			void advance(std::string adv);
+			void advanceType(std::string adv);
 
 
-		class API parser{
-			public:
-				parser(std::string delim, int type, bool quotes, std::vector<std::string> input); // Process by space (eg: alias test = x, not alias test=x)
-				~parser();
-				int getType(int in); // Return assignment of one type; eg: arg(0) 
-				std::string getValue(int in);
-				std::pair<int, std::string> get(int in);
-				int size();
-			private:
-				bool parseQuotes;
-				std::vector<std::string> myBuffer;
-				std::string myStrBuffer;
-				std::vector<int> assigned; // For each processed input:
-							   // 0 = identifier
-							   // 1 = setter (=)
-							   // 2 = name
 
+			parserType getType(std::string accesser) {
+				try {
+					return tokenParser::tokenTypes[accesser];
+				}
+				catch (std::exception e) {
+					std::cout << e.what() << std::endl;
+					return parserType::NA;
+				}
+
+			}
+
+			std::string getString(std::string accesser) {
+				try {
+					return tokenParser::tokens[accesser];
+				}
+				catch (std::exception e) {
+					std::cout << e.what() << std::endl;
+					return STRNULL;
+				}
+			}
+
+
+			int getNumberOfArgs() {
+				return numberOfArgs;
+			}
+
+		private:
+			int numberOfArgs = 0;
+			int argT = 0;
+			int argType = 0;
+			std::unordered_map<std::string, std::string> tokens;
+			std::unordered_map<std::string, parserType> tokenTypes;
+
+			std::vector<std::string> parse(std::string inp) {
+				std::istringstream ss(inp);
+				using StrIt = std::istream_iterator<std::string>;
+				std::vector<std::string> container(StrIt(ss), StrIt{});
+				return container;
+			}
 
 		};
 	}

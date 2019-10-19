@@ -27,6 +27,8 @@ namespace termDLL{
 
 		API std::string removeStr(std::string orig, std::string rem);
 
+		API std::vector<std::string> removeVector(std::vector<std::string> in, std::string rem);
+
 		// Copies from EzraJ/ModDLL bc reasons
 		class API tokenParser {
 		public:

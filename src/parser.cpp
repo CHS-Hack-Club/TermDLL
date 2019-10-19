@@ -12,8 +12,8 @@ namespace termDLL{
 		std::vector<std::string> strParse(std::string input, std::string delim) {
 			std::string buffer = input;
 			size_t delimPos = buffer.find(delim);
-			buffer.insert(delimPos - delim.length(), " ");
-			buffer.insert(delimPos + delim.length(), " ");
+			buffer.insert(delimPos, " ");
+			buffer.insert(delimPos + delim.length() + 1, " "); // + 1 to account for the space added
 			return strParse(buffer);
 		}
 
@@ -31,29 +31,34 @@ namespace termDLL{
 			return buffer;
 		}
 
+		std::vector<std::string> removeVector(std::vector<std::string> in, std::string rem) {
+			std::vector<std::string> buffer = in;
+			buffer.erase(std::remove(buffer.begin(), buffer.end(), rem), buffer.end());
+			return buffer;
+		}
 
 		tokenParser::tokenParser(std::string toProcess, std::string etcdelim, std::string delim, std::string exclude) {
-			removeStr(toProcess, etcdelim);
 			std::vector<std::string> bufferVector = strParse(toProcess, delim);
-			/*std::vector<std::string> excludedProcess;
+			bufferVector = removeVector(bufferVector, etcdelim);
+			int temp = 0;
 			for (std::vector<std::string>::iterator it = bufferVector.begin(); it != bufferVector.end(); it++) {
-				if (*it != exclude && *it != " ") {
-					excludedProcess.emplace_back(*it);
-					std::cout << *it;
-				}
-			} */
+				tokenParser::tokens["arg" + std::to_string(temp)] = *it;
+				temp++;
+			}
+			
 
 			for (std::vector<std::string>::iterator it = bufferVector.begin(); it != bufferVector.end(); it++) {
-				std::cout << "PROC: " << *it << std::endl;
 				numberOfArgs++;
 				advance(*it);
 			}
 		}
 	
 		void tokenParser::advance(std::string adv) {
+			if (adv == STRNULL || adv == " ") {
+				return;
+			}
 			tokens[std::string("arg" + std::to_string(argT))] = adv;
 			argT++;
-			std::cout << "PROC(2): " << adv << std::endl;
 			advanceType(adv);
 		}
 	
@@ -64,11 +69,11 @@ namespace termDLL{
 			}
 			else {
 				if (argT - 1 != -1) {
-					if (tokens["arg" + std::to_string(argT - 1)] == "=") {
+					if (tokens["arg" + std::to_string(argType - 1)] == "=") {
 						bufferType = parserType::variable;
 					}
-					else if (tokens["arg" + std::to_string(argT + 1)] == "=") {
-						bufferType = parserType::variable;
+					else if (tokens["arg" + std::to_string(argType + 1)] == "=") {
+						bufferType = parserType::identifier;
 					}
 				}
 			}
@@ -76,10 +81,6 @@ namespace termDLL{
 			std::cout << "Assign: " << adv << " T: " << bufferType << std::endl;
 			argType++;
 		}
-
-
-
-
 
 	}
 }

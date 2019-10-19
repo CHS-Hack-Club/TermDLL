@@ -18,5 +18,6 @@ int main() {
 	std::cout << "Content: " << myParse.getString("arg1") << " ID: " << myParse.getType("arg1") << std::endl;
 	std::cout << "Content: " << myParse.getString("arg2") << " ID: " << myParse.getType("arg2") << std::endl;
 
+	std::cin.get();
 	return 0;
 }

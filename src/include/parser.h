@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef PARSER_H_
+#define PARSER_H_
+
 #include "export.h"
 #include <iostream>
 #include <vector>
@@ -83,3 +88,6 @@ namespace termDLL{
 		};
 	}
 }
+
+
+#endif

@@ -31,16 +31,19 @@
 #include <sstream>
 #include <iterator>
 
+// TermDLL Libraries
+#include "cross/functiondef.h"
+#include "export.h"
+
+
 // OS specific libraries
 #ifdef _WIN32
-#include <windows.h>
+#include "win32/functiondef.h"
 #elif __linux__
-#include <unistd.h>
+#include "linux/functiondef.h"
 #endif
 
-// TermDLL Libraries
-#include "export.h"
-//#include "global.h"
+
 
 namespace termDLL {
 

@@ -5,21 +5,21 @@
 
 #pragma once
 
-// Define API keyword
-#ifdef TERMDLL_EXPORT
-#define API __declspec(dllexport)
-#else
-#define API __declspec(dllimport)
+// Define API and GLOBAL_VAR keyword
+
+#ifdef _WIN32
+	#ifndef API
+		#ifdef TERMDLL_EXPORT
+			#define API __declspec(dllexport)
+		#else
+			#define API __declspec(dllimport)
+		#endif
+	#endif
+	#define GLOBAL_VAR __declspec(selectany)
 #endif
 
-// Linux doesn't support __declspec(dllexport)
+
 #ifdef __linux__
+	#define API
 	#define GLOBAL_VAR static
-
-	#ifdef TERMDLL_EXPORT
-		#define API __attribute__((visibility("default")))
-	#endif
-
-#else
-	#define GLOBAL_VAR __declspec(selectany)
 #endif

@@ -12,9 +12,11 @@
 
 namespace termDLL {
 	namespace functions {
-		namespace linux {
+		namespace linuxFunc {
 
-
+			void init(returnDataMacro* data){
+				
+			}
 
 
 		}

@@ -34,7 +34,7 @@
 // TermDLL Libraries
 #include "cross/functiondef.h"
 #include "export.h"
-
+#include "global.h"
 
 // OS specific libraries
 #ifdef _WIN32

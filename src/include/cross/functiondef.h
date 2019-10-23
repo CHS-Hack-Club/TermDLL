@@ -10,9 +10,11 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <unordered_map>
+#include <functional>
 #include "export.h"
 
-
+#define returnDataMacro termDLL::functions::baseData
 
 namespace termDLL {
 	namespace functions {

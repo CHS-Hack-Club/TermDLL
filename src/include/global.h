@@ -10,17 +10,19 @@
 #define GLOBAL_H_
 
 #ifdef _WIN32
-#define GLOBAL_VAR __declspec(selectany)
+//#define GLOBAL_VAR __declspec(selectany)
 #define DEFAULT_PATH "C:\\"
 #else
-#define GLOBAL_VAR static
+//#define GLOBAL_VAR static
 #define DEFAULT_PATH "/home/"
 #endif
 
 #include <iostream>
 #include <string>
 #include <vector>
+#include <functional>
 #include "action.h"
+
 
 
 namespace termDLL{
@@ -30,6 +32,11 @@ namespace termDLL{
 		GLOBAL_VAR std::string version;
 		
 	}
+
+	namespace functions{
+		GLOBAL_VAR std::unordered_map<std::string, std::function<returnDataMacro*(returnDataMacro*)> > funcs;		
+	}
+	
 }
 
 #endif

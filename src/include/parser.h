@@ -46,27 +46,21 @@ namespace termDLL{
 
 
 			parserType getType(std::string accesser) {
-				try {
+				if(tokenParser::tokenTypes.at(accesser) != parserType::NA && tokenParser::tokenTypes.at(accesser) ){
 					return tokenParser::tokenTypes[accesser];
-				}
-				catch (std::exception e) {
-					std::cout << e.what() << std::endl;
+				}else{
 					return parserType::NA;
 				}
-
 			}
 
 			std::string getString(std::string accesser) {
-				try {
+				if(tokenParser::tokens.at(accesser) != "" && tokenParser::tokens.at(accesser) != " "){
 					return tokenParser::tokens[accesser];
-				}
-				catch (std::exception e) {
-					std::cout << e.what() << std::endl;
+				}else{
 					return STRNULL;
 				}
 			}
-
-
+			
 			int getNumberOfArgs() {
 				return numberOfArgs;
 			}

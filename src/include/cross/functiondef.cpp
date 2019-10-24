@@ -5,6 +5,7 @@
 
 
 #include "cross/functiondef.h"
+#include "global.h"
 
 namespace termDLL{
 	namespace functions{

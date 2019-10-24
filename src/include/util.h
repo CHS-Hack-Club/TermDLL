@@ -20,7 +20,7 @@ namespace termDLL{
 
 		namespace fs{
 			API std::string getPath();
-			API void setPath(std::string path);
+			API void setPath(std::string pathStr);
 		}
 		
 	}

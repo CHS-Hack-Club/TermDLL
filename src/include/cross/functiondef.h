@@ -17,6 +17,21 @@
 
 #define returnDataMacro termDLL::functions::baseData
 
+
+
+namespace termDLL{
+		namespace functions{
+			#ifdef _WIN32
+			namespace osFunctions linuxFunc;
+			#else
+			namespace osFunctions windowsFunc;
+			#endif
+	}
+}
+
+
+
+
 namespace termDLL {
 	namespace functions {
 

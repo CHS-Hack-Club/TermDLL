@@ -12,7 +12,7 @@ namespace termDLL{
 
 		void init(){
 			termDLL::core::currentWorkingDirectory = std::filesystem::current_path();
-			
+			osFunctions::init();
 		}
 			
 	}	

@@ -12,7 +12,17 @@
 
 #include <iostream>
 #include <Windows.h>
+#include "export.h"
 
+
+namespace termDLL{
+	namespace funtions{
+		namespace windowsFunc{
+			API void init(returnDataMacro* data);
+			GLOBAL_VAR std::unordered_map<std::string, std::function<returnDataMacro*(returnDataMacro*)>> linuxFuncs;
+		}
+	}
+}
 
 
 #endif

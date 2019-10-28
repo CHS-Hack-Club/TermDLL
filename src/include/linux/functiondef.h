@@ -20,7 +20,6 @@
 namespace termDLL {
 	namespace functions {
 		namespace linuxFunc {
-			template<typename T>
 			API void init(returnDataMacro* data);
 			GLOBAL_VAR std::unordered_map<std::string, std::function<returnDataMacro*(returnDataMacro*)>> linuxFuncs;
 

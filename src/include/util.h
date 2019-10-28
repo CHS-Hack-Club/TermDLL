@@ -12,7 +12,6 @@
 
 #include "export.h"
 #include <iostream>
-#include <filesystem>
 
 namespace termDLL{
 

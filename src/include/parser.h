@@ -43,8 +43,6 @@ namespace termDLL{
 			void advance(std::string adv);
 			void advanceType(std::string adv);
 
-
-
 			parserType getType(std::string accesser) {
 				if(tokenParser::tokenTypes.at(accesser) != parserType::NA && tokenParser::tokenTypes.at(accesser) ){
 					return tokenParser::tokenTypes[accesser];
@@ -71,13 +69,6 @@ namespace termDLL{
 			int argType = 0;
 			std::unordered_map<std::string, std::string> tokens;
 			std::unordered_map<std::string, parserType> tokenTypes;
-
-			std::vector<std::string> parse(std::string inp) {
-				std::istringstream ss(inp);
-				using StrIt = std::istream_iterator<std::string>;
-				std::vector<std::string> container(StrIt(ss), StrIt{});
-				return container;
-			}
 
 		};
 	}

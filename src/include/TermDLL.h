@@ -45,8 +45,8 @@
 namespace termDLL {
 
 	namespace core {
-		API void init(std::string dir, bool printInfo);
-		API bool run(std::vector<std::string> input);
+		API void init(returnDataMacro* data);
+		API bool run(returnDataMacro* data); // Runtime
 	}
 	
 

@@ -4,15 +4,15 @@
 */
 
 
-#include "cross/functiondef.h"
+#include "cross/functiondef.h" // Includes cross/filesystem.h
 #include "global.h"
 
 namespace termDLL{
 	namespace functions{
 
-		void init(){
+		void init(returnDataMacro* data){
 			termDLL::core::currentWorkingDirectory = std::filesystem::current_path();
-			osFunctions::init();
+			osFunctions::init(data); // Pass data through
 		}
 			
 	}	

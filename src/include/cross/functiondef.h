@@ -53,7 +53,7 @@ namespace termDLL {
 			std::vector<float> floatData; // Use returnData<double> for double values
 		};
 
-		API void init();
+		API void init(returnDataMacro* data);
 
 	}
 }

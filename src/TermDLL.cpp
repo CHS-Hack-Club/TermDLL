@@ -6,14 +6,14 @@
 namespace termDLL {
 	namespace core {
 #ifdef _WIN32
-		void init(std::string dir, bool printInfo) {
+		void init(returnDataMacro* data) {
 			termDLL::core::currentWorkingDirectory = dir;
-
+			termDLL::functions::init(data);
 		}
-#else
-	void init(std::string dir, bool printInfo) {
+#elif __linux__
+	void init(returnDataMacro* data) {
 		termDLL::core::currentWorkingDirectory = dir;
-
+		termDLL::functions::init(data);
 	}
 
 #endif

@@ -10,8 +10,9 @@
 #ifndef UTIL_H_
 #define UTIL_H_
 
-#include "export.h"
 #include <iostream>
+#include "export.h"
+#include "cross/filesystem"
 
 namespace termDLL{
 

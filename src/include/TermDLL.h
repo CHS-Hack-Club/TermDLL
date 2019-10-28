@@ -25,11 +25,11 @@
 #include <utility>
 #include <sstream>
 #include <iterator>
-#include <filesystem>
+
 
 // TermDLL Libraries
 #include "util.h"
-#include "cross/functiondef.h"
+#include "cross/functiondef.h" // Includes cross/filesystem.h
 #include "export.h"
 #include "global.h"
 

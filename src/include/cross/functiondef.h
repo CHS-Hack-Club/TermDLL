@@ -12,7 +12,7 @@
 #include <algorithm>
 #include <unordered_map>
 #include <functional>
-#include <filesystem>
+#include "cross/filesystem.h"
 #include "export.h"
 
 #define returnDataMacro termDLL::functions::baseData

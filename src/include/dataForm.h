@@ -21,20 +21,26 @@ namespace TermDLL{
     template<class T>
     class API userInput{
         public:
-            userInput();
-			~userInput();
+            userInput(){}
+			~userInput(){}
 			virtual T update(inputMode mode = inputMode::io, bool temp = true, bool alwaysGetInput = true, bool formatted = true){
 				T buffer;
 				switch(mode){
-					case 0:				//Zero
-						// Do nothing
+					case inputMode::zero:			//Zero
+						{break;}
+					case inputMode::io:				//Allow input and output
+					{
+						if(formatted){
+							std::cin >> buffer;				
+						}else{
+							std::getline(std::cin, buffer);
+						}
+						
 						break;
-					case 1:				//Allow input and output
-						std::cin >> buffer;
-						break;
-					case 2:				//Disable console output
-						std::streambuf* stdbuf = std::cout.rdbuf();
-						std::cout.rdbuf(NULL); // Set std::cout to output to nothing
+					}
+					case inputMode::ionly:				//Disable console output
+					{
+						std::cout.setstate(std::ios_base::failbit); // Disable std::cout
 						if(alwaysGetInput){
 							if(formatted){
 								std::cin >> buffer;
@@ -42,18 +48,21 @@ namespace TermDLL{
 								std::getline(std::cin, buffer);
 							}
 						}
-						std::cout.rdbuf(stdbuf); // Reset to original buffer
+						std::cout.clear(); // Reset std::cout for output
 						break;
-					case 3:				//Only allow output
+					}
+					case inputMode::outputonly:				//Only allow output
 						// Do nothing..
-						break;
+						{break;}
 					default:
-						break;
+						{break;}
 				}
-			};
+				updated = buffer;
+				return updated;				
+			}
 			virtual T data(){ // Return user input unless specified
 				return updated; 
-			};
+			}
         private:
 			T updated;
 			inputMode myMode = inputMode::io; // Allow input and output by default.

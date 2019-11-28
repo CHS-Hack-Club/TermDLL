@@ -12,8 +12,20 @@
 #include <iostream>
 #include <vector>
 
+namespace TermDLL{
+	class API command : userInput<std::string>{
+		public:
+			command();
+			~command();
 
 
+		private:
+
+		
+	};
+
+	
+}
 
 
 

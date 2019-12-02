@@ -10,9 +10,18 @@
 */
 #ifndef _TERMDLL_H_
 #define _TERMDLL_H_
+
+// Preq Libaries
+
+#include "streams.h"
+
+// Core libraries
+
 #include "dataForm.h"
 #include "export.h"
 #include "TermDLL.h"
+
+
 
 
 namespace TermDLL{

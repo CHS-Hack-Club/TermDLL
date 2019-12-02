@@ -1,4 +1,5 @@
 # My changes
+ExampleProject/
 .vs/
 [Bb]in/
 [Oo]bj/
@@ -6,7 +7,7 @@
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
-
+copy.sh
 Makefile
 *.make
 .vscode/

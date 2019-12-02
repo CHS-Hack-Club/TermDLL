@@ -17,6 +17,14 @@ namespace TermDLL{
 		ionly, 	    // Allow NO std::cout, std::cerr, etc
 		outputonly  // Only allow output, no input
 	};    
+
+	struct streamMode{
+		inputMode myMode;
+		bool temporary;
+		bool alwaysGetInput;
+		bool formatted;		
+	};
+
 }
 
 #endif

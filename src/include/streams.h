@@ -56,6 +56,14 @@ namespace TermDLL{
 				updated = buffer;
 				return updated;				
 			}
+
+			T update(streamMode inputMode){
+				return update(inputMode.myMode, inputMode.temporary, inputMode.alwaysGetInput, inputMode.formatted);
+			}
+
+			T update(){
+				return update(myStreamMode);
+			}
 			
 			virtual T data(){
 				return updated;
@@ -63,6 +71,7 @@ namespace TermDLL{
         private:
 			T updated;
 			inputMode myMode = inputMode::io; // Allow input and output by default.
+			streamMode myStreamMode;
     };
 
 

@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <vector>
+#include <utility>
+#include <sstream>
 
 namespace TermDLL{
     template<class T>
@@ -61,7 +63,7 @@ namespace TermDLL{
 				return update(inputMode.myMode, inputMode.temporary, inputMode.alwaysGetInput, inputMode.formatted);
 			}
 
-			T update(){
+			T input(){
 				return update(myStreamMode);
 			}
 			
@@ -75,10 +77,56 @@ namespace TermDLL{
     };
 
 
+	class API parsedInput{
+		public:
+			parsedInput(std::string delim = " ", bool update = true ,userInput<std::string> input* = new userInput()){
+				parsedInput::delim = delim;
+				if(update){
+					input->input();
+					parsedInput::rawInput = input->data();
+				}else{
+					parsedInput::rawInput = input->data();
+				}
+			}
+			~parsedInput(){}
 
 
+			std::vector<std::string> delimParse(std::string input){
+				std::istringstream ss(input);
+				using StrIt = std::istream_iterator<std::string>;
+				std::vector<std::string> contain(StrIt(ss), StrIt{});
+				return contain;
+			}
 
-	class API command : userInput<std::string>{
+			std::pair<std::vector<std::string>, std::unordered_map<int, std::string>> parse(){ // my eyes
+				std::vector<std::string> delimText; // Text parsed WITHOUT the delim
+			}
+
+			
+
+		private:
+			std::pair<std::vector<std::string>, std::unordered_map<int, std::string>> myPairs;
+
+			// TODO: Add more implementations and uses for this class other than
+			// just getting aliases made.
+			/*
+				{
+					"alias",		[-1, "delim"]
+					"qwerty",		[1, "text"]
+					"foo",			[1, "variable"]
+					"=",			[2, "setter"]
+					"bar"			[3, "value"]
+				}
+
+			*/
+			std::vector<std::string> parsedInput;
+			std::string delim; 
+			std::string rawInput;
+		
+	}
+
+
+	class API command : parsedInput{
 		public:
 			command();
 			~command();
